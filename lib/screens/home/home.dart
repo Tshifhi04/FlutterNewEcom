@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
+
+import '../../constants/routes.dart';
+import '../auth_ui/login/login.dart';
 
 
 class Home extends StatelessWidget {
@@ -18,6 +22,13 @@ class Home extends StatelessWidget {
             Expanded(
               child: Text("heyy thrtr")
             ),
+             CupertinoButton(
+                                  onPressed: () {
+                                               Routes.instance.push(widget: const Login(), context:context);
+        
+                                  },
+                                  child: const Text("Login"),
+                                ),
           ],
         ),
         SizedBox(height: 300),

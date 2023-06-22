@@ -16,28 +16,26 @@ void showMessage(String message){
     );
 }
 
-showLoaderDialog(BuildContext context){
+void showLoaderDialog(BuildContext context) {
   AlertDialog alert = AlertDialog(
     content: Builder(builder: ((context) {
       return SizedBox(
         width: 100,
-        child:Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const CircularProgressIndicator(
-               color:Color(0xffe16555),
+              color: Color.fromARGB(255, 6, 46, 177),
             ),
             const SizedBox(
-              height:18.0,
+              height: 18.0,
             ),
-
             Container(
-              margin: const EdgeInsets.only(left:7),
-              child: const Text("Loading....")
+              margin: const EdgeInsets.only(left: 7),
+              child: const Text("Loading...."),
             ),
-
-          ]
-        )
+          ],
+        ),
       );
     })),
   );
@@ -47,9 +45,15 @@ showLoaderDialog(BuildContext context){
     context: context,
     builder: (BuildContext context) {
       return alert;
-    }
-
+    },
   );
+
+  // Delay closing the dialog for 3 seconds
+  Future.delayed(Duration(seconds: 2), () {
+    Navigator.of(context).pop(); // Close the dialog
+  });
+}
+
 
 
 String getMessageFromErrorCode(String errorCode){
@@ -101,19 +105,45 @@ String getMessageFromErrorCode(String errorCode){
   
   
    }
+
+
+
+   
 }
-
-
-
-
-
-
-}
-
 
 bool loginValidation(String email,String password){
   if(email.isEmpty && password.isEmpty){
     showMessage("both feilds is Empty");
+    return false;
+  }
+  else if(password.isEmpty){
+    showMessage("password is Empty");
+    return false;
+  }
+  else if(email.isEmpty){
+    showMessage("Email is Empty");
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
+bool signUpValidation(String email,String password,String firstName,String lastName,String phoneNumber){
+  if(email.isEmpty && password.isEmpty && firstName.isEmpty && lastName.isEmpty&& phoneNumber.isEmpty ){
+    showMessage("All feilds are Empty");
+    return false;
+  }
+  else if(firstName.isEmpty){
+    showMessage("password is Empty");
+    return false;
+  }
+  else if(lastName.isEmpty){
+    showMessage("password is Empty");
+    return false;
+  }
+  else if(phoneNumber.isEmpty){
+    showMessage("password is Empty");
     return false;
   }
   else if(password.isEmpty){

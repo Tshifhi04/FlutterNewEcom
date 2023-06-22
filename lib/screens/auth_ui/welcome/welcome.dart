@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ecom_app/constants/asset_images.dart';
 import 'package:new_ecom_app/constants/routes.dart';
 import 'package:new_ecom_app/screens/auth_ui/login/login.dart';
+import 'package:new_ecom_app/screens/auth_ui/signup/signup.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 
 import '../../../widgets/buttons.dart';
@@ -72,6 +73,9 @@ class Welcome extends StatelessWidget {
                })),
                    SizedBox(height: 5,),
                   Buttons(title: "SignUp",onPressed: (() {
+
+                                                                        Routes.instance.push(widget: const SignUp(), context:context);
+
                  //on pesss functionality here
                })),
               

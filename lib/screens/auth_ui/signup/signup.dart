@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/constants/constants.dart';
 import 'package:new_ecom_app/constants/routes.dart';
+import 'package:new_ecom_app/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:new_ecom_app/screens/auth_ui/login/login.dart';
 import 'package:new_ecom_app/screens/home/home.dart';
 import 'package:new_ecom_app/widgets/buttons.dart';
@@ -21,6 +23,13 @@ const SignUp({super.key});
 }
 
 class _SignUpState extends State<SignUp> {
+
+    TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+      TextEditingController phoneNumber = TextEditingController();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+
 
   bool  isShowPassword = true;
 
@@ -62,6 +71,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                    SizedBox(height: 20,),*/
                      TextFormField(
+                      controller: firstName,
                     decoration: InputDecoration(
                       hintText: "First Name",
                       
@@ -71,6 +81,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                       SizedBox(height: 20,),
                      TextFormField(
+                      controller: lastName,
                     decoration: InputDecoration(
                       hintText: "Last Name",
                       
@@ -83,6 +94,7 @@ class _SignUpState extends State<SignUp> {
                   ), SizedBox(height: 20,),
         
                      TextFormField(
+                      controller: phoneNumber,
                       keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: "Phone Number",
@@ -96,6 +108,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                    SizedBox(height: 20,),
                   TextFormField(
+                    controller: email,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Email",
@@ -109,6 +122,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
+                    controller: password,
                     obscureText: isShowPassword,
                     decoration: InputDecoration(
                       hintText: "Password",
@@ -133,9 +147,22 @@ class _SignUpState extends State<SignUp> {
         
         
                   SizedBox(height: 40,),
-                  Buttons(onPressed: (){
-                     Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
-                  }, title: "SignUp"),
+                  Buttons(onPressed: ()async{
+
+
+  
+                  bool isValidated =  signUpValidation(email.text, password.text,firstName.text,lastName.text,phoneNumber.text);
+                  if (isValidated)
+                  {
+                    // showLoaderDialog(context);
+                     bool isLogined= await  FirebaseAuthHelper.instance.SignUp(email.text, password.text, context);
+                    if (isLogined){
+                 
+                      Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
+        
+                    
+                    }
+                  }                  }, title: "SignUp"),
                    SizedBox(height: 15,),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,

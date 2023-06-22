@@ -92,14 +92,17 @@ bool  isShowPassword = true;
         
                   SizedBox(height: 40,),
                   Buttons(onPressed: () async {
+                   
                   bool isValidated =  loginValidation(email.text, password.text);
                   if (isValidated)
                   {
+                    // showLoaderDialog(context);
                      bool isLogined= await  FirebaseAuthHelper.instance.login(email.text, password.text, context);
                     if (isLogined){
                  
                       Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
         
+                    
                     }
                   }
                   }, title: "Login"),
