@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 void showMessage(String message){
   Fluttertoast.showToast(
-        msg: "This is Center Short Toast",
+        msg: "This is Center Short Toast", // font forget to add message from parameter
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -107,4 +107,24 @@ String getMessageFromErrorCode(String errorCode){
 
 
 
+
+}
+
+
+bool loginValidation(String email,String password){
+  if(email.isEmpty && password.isEmpty){
+    showMessage("both feilds is Empty");
+    return false;
+  }
+  if(password.isEmpty){
+    showMessage("password is Empty");
+    return false;
+  }
+  if(email.isEmpty){
+    showMessage("Email is Empty");
+    return false;
+  }
+  else{
+    return true;
+  }
 }

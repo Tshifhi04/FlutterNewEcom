@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/widgets/title_heading.dart';
 
 
 class Home extends StatelessWidget {
@@ -9,9 +10,27 @@ class Home extends StatelessWidget {
     return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const[
-              
-            ]
+             children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BackButton(),
+            Expanded(
+              child: Text("heyy thrtr")
+            ),
+          ],
+        ),
+        SizedBox(height: 300),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: TextFormField(
+            decoration: InputDecoration(
+              hintText: "Email",
+              prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+            ),
+          ),
+        ),
+      ],
           )
 
     );

@@ -26,8 +26,8 @@ class Welcome extends StatelessWidget {
           Center(
                 child: Image.asset(AssetsImages.instance.welcomeImage,
              // alignment: Alignment.center,
-                height: 500,
-                width: 700,
+                height: 270,
+                width: 750,
 
                 
                 ),

@@ -1,4 +1,5 @@
-import 'dart:js';
+//import 'dart:js';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -12,3 +13,4 @@ class Routes{
       return Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>widget),);
     }
 }
+//1.53.22
