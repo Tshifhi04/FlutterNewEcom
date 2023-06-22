@@ -50,8 +50,12 @@ bool  isShowPassword = true;
                 SizedBox(height: 300,),
         
                   TextFormField(
+                                        controller: email,
+
                     decoration: InputDecoration(
                       hintText: "Email",
+                                         
+
                       
                       prefixIcon: Icon(Icons.email_outlined, color: Colors.grey,),
                    
@@ -62,6 +66,7 @@ bool  isShowPassword = true;
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
+                    controller: password,
                     obscureText: isShowPassword,
                     decoration: InputDecoration(
                       hintText: "Password",

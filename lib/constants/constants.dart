@@ -6,11 +6,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 void showMessage(String message){
   Fluttertoast.showToast(
-        msg: "This is Center Short Toast", // font forget to add message from parameter
+        msg: message, // font forget to add message from parameter
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blue,
         textColor: Colors.white,
         fontSize: 16.0
     );
@@ -25,7 +25,7 @@ showLoaderDialog(BuildContext context){
           mainAxisSize: MainAxisSize.min,
           children: [
             const CircularProgressIndicator(
-              color:Color(0xffe16555),
+               color:Color(0xffe16555),
             ),
             const SizedBox(
               height:18.0,
@@ -57,17 +57,17 @@ String getMessageFromErrorCode(String errorCode){
     case "ERROR_EMAIL_ALREADY_IN_USE": 
     return "Email already in use. Please Login";
 
-    case "accounts_already_exists_with_different_credentials":
+   case "accounts_already_exists_with_different_credentials":
     return "Email already in use. please Login";
 
-    case "email_already_in_use":
+   case "email_already_in_use":
     return "Email already used. Please Login";
 
     case "ERROR_WRONG_PASSWORD":
     case "wrong_password":
       return "Wrong Password";
 
-     case "ERROR_USER_NOT_FOUND":
+   case "ERROR_USER_NOT_FOUND":
       return "No User Found With This Email";
 
     case "user-not-found":
@@ -116,11 +116,11 @@ bool loginValidation(String email,String password){
     showMessage("both feilds is Empty");
     return false;
   }
-  if(password.isEmpty){
+  else if(password.isEmpty){
     showMessage("password is Empty");
     return false;
   }
-  if(email.isEmpty){
+  else if(email.isEmpty){
     showMessage("Email is Empty");
     return false;
   }
