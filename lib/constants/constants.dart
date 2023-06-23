@@ -49,9 +49,9 @@ void showLoaderDialog(BuildContext context) {
   );
 
   // Delay closing the dialog for 3 seconds
-  Future.delayed(Duration(seconds: 2), () {
+  /*Future.delayed(Duration(seconds: 2), () {
     Navigator.of(context).pop(); // Close the dialog
-  });
+  });*/
 }
 
 
