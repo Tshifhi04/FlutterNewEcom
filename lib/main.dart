@@ -9,6 +9,8 @@ import 'package:new_ecom_app/screens/home/home.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_options/firebase_options.dart';
 import 'dart:io';
 
+import 'package:new_ecom_app/screens/product_details/product_details.dart';
+
 
 void main() async{  
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuthHelper.instance.getAuthChange,
         builder: (context, snapshot){
           if(snapshot.hasData){
-            return const Welcome();//Home
+            return const Home();//Home
           }
           return const Welcome();
         }

@@ -24,9 +24,9 @@ class ProductModel {
     String name; 
     String status;
     bool isFavourite;
-    String price;
+    double price;
 
-    factory ProductModel.fromJson(Map<String,dynamic> json) => ProductModel(image: json["image"],status: json["status"], id: json["id"], name: json["name"],price: json["price"], description: json["description"],isFavourite: false);
+    factory ProductModel.fromJson(Map<String,dynamic> json) => ProductModel(image: json["image"],status: json["status"], id: json["id"], name: json["name"],price: double.parse(json["price"].toString() ), description: json["description"],isFavourite: false);
 
     Map<String,dynamic> toJson()=>{
       "id":id,

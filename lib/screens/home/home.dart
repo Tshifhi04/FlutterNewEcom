@@ -1,17 +1,59 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/firebase_helper/firebase_firestore/firebase_firestore.dart';
+import 'package:new_ecom_app/models/category_model/category_model.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/screens/product_details/product_details.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 
 import '../../constants/routes.dart';
 import '../auth_ui/login/login.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+List<CategoryModel> categoriesList= [];
+List<ProductModel> productList= [];//what we have for you AKA best products or top selling!!!
+
+
+
+bool isLoading =false;
+
 @override
+void initState() {
+    getCategoryList();
+   // getProductList();////what we have for you AKA best products or top selling!!!
+    super.initState();
+  }
+
+
+void getCategoryList()async{
+  setState(() {
+    isLoading=true;
+  });
+  categoriesList=  await FirebaseFirestoreHelper.instance.getCategories();
+  productList=  await FirebaseFirestoreHelper.instance.getWhatWeHaveForYou();//what we have for you AKA best products or top selling!!!
+  productList.shuffle();
+   setState(() {
+    isLoading=false;
+  });
+}
+
+
+
 Widget build(BuildContext context) {
   return Scaffold(
-    body: SingleChildScrollView(
+    body: isLoading?Center(child:Container(
+      height: 100,
+      alignment: Alignment.center,
+      width: 200,
+      child:CircularProgressIndicator(),
+    )): SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +78,8 @@ Widget build(BuildContext context) {
             ),
           ),
 
-          SingleChildScrollView(
+          categoriesList.isEmpty?(Center(child: Text("Categories is empty"),))
+          :SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: categoriesList.map((e) => Padding(
@@ -50,7 +93,7 @@ Widget build(BuildContext context) {
                   child: SizedBox(
                     height: 80,
                     width: 120,
-                    child: Image.network(e),
+                    child: Image.network(e.image),
                   ),
                 ),
               )).toList(),
@@ -65,15 +108,16 @@ Widget build(BuildContext context) {
             ),
           ),
       //  const  SizedBox(height: 2),
-         Padding(
+           productList.isEmpty?(Center(child: Text("No Top selling products and services to offer "),))
+            : Padding(
             padding: const EdgeInsets.all(20.0),
             child: GridView.builder(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
-              itemCount: whatWeHaveForYou.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 20,childAspectRatio:0.9),
+              itemCount: productList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 20,childAspectRatio:1),
               itemBuilder: (ctx, index) {
-                ProductModel singleProduct = whatWeHaveForYou[index];
+                ProductModel singleProduct = productList[index];
                 return Container(
                   //color: Colors.blueAccent,
                   //heig,
@@ -93,29 +137,36 @@ Widget build(BuildContext context) {
                       ),
                       Text("Price: \R${singleProduct.price}"),
                       SizedBox(height: 9),
-                      SizedBox(height:45,width:140,child: OutlinedButton(onPressed: () {}, 
+                      SizedBox(height:45,width:140,child: OutlinedButton(onPressed: () {
+
+                        Routes.instance.push(widget: ProductDetails(singleProduct: singleProduct), context: context);
+                      }, 
                       style:OutlinedButton.styleFrom(side: BorderSide(color:Colors.blueAccent,width: 2.0),),child: Text("Buy",style: TextStyle(color: Colors.blueAccent),),)),
                      // SizedBox(height: 500),
                     ],
                   ),
+
                 );
               },
+              
             ),
           ),
+                            SizedBox(height: 20,)
        ],
       ),
     ),
   );
 
   }
- }           
+}   
+        
           
 
 
 
 
 
-
+/*
 
 List<String> categoriesList =[
 "https://cdni.iconscout.com/illustration/premium/thumb/gadgets-3395110-2862652.png",
@@ -186,3 +237,4 @@ List<ProductModel> whatWeHaveForYou =[
 
     )
 ];
+*/
