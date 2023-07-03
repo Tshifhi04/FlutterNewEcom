@@ -16,7 +16,7 @@ class Cart extends StatelessWidget {
          
            return Container(
             child: Row(children: [
-                  Image.asset(src)
+                 // Image.asset(src)
                   ///when i continue i should worke here and go onwards!!!    3:48:41
             ]),
               decoration: BoxDecoration(
