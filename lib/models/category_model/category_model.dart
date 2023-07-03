@@ -11,7 +11,7 @@ class CategoryModel {
     CategoryModel({
       required this.image,
       required this.id,
-     // required this.name,
+      required this.name,
     /*  required this.description,
       required this.status,
         required this. isFavourite,
@@ -21,17 +21,17 @@ class CategoryModel {
     String id;
     String image;
    /* String description;*/
-   // String name; 
+    String name; 
    /* String status;
     bool isFavourite;
     String price;*/
 
-    factory CategoryModel.fromJson(Map<String,dynamic> json) => CategoryModel(image: json["image"],/*status: json["status"],*/ id: json["id"]/*, /*name: json["name"]*/*,price: json["price"], description: json["description"],isFavourite: false*/);
+    factory CategoryModel.fromJson(Map<String,dynamic> json) => CategoryModel(image: json["image"],/*status: json["status"],*/ id: json["id"], name: json["name"]/*,price: json["price"], description: json["description"],isFavourite: false*/);
 
     Map<String,dynamic> toJson()=>{
       "id":id,
-    //  "name":name,
-      /*"image":image,
+      "name":name,
+      "image":image,/*
       "description":description,
       "price":price,
       "status":status,

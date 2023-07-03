@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_firestore/firebase_firestore.dart';
 import 'package:new_ecom_app/models/category_model/category_model.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/screens/category_view/category_view.dart';
 import 'package:new_ecom_app/screens/product_details/product_details.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 
@@ -84,16 +85,22 @@ Widget build(BuildContext context) {
             child: Row(
               children: categoriesList.map((e) => Padding(
                 padding: const EdgeInsets.only(left: 10.0),
-                child: Card(
-                  color: Colors.white,
-                  elevation: 8.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SizedBox(
-                    height: 80,
-                    width: 120,
-                    child: Image.network(e.image),
+                child: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: (){
+                    Routes.instance.push(widget: CategoryView(categoryModel:e), context: context);
+                  },
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 8.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: SizedBox(
+                      height: 80,
+                      width: 120,
+                      child: Image.network(e.image),
+                    ),
                   ),
                 ),
               )).toList(),

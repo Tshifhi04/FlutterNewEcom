@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/screens/cart/cart.dart';
+
+import '../../constants/routes.dart';
 
 class ProductDetails extends StatefulWidget {
   final ProductModel singleProduct;
@@ -17,7 +20,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     return  Scaffold(
         appBar: AppBar(
           actions: [
-            IconButton(onPressed: (){}, icon: Icon((Icons.shopping_cart))),
+            IconButton(onPressed: (){
+              Routes.instance.push(widget: Cart(), context: context);
+            }, icon: Icon((Icons.shopping_cart))),
           ],
         ),
         body: Padding(
@@ -95,7 +100,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [ OutlinedButton(onPressed: (){}, child: Text("Add to cart")), SizedBox(width:10 ,), ElevatedButton(onPressed:(){}, child: Text("\Buy"))],
+                    children: [ OutlinedButton(onPressed: (){}, child: Text("Add to cart")), SizedBox(width:10 ,), Container(width:110,child: ElevatedButton(onPressed:(){}, child: Text("Buy"),))],
                   ),
                   SizedBox(
                     height: 15,

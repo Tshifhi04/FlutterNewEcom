@@ -26,10 +26,10 @@ final String Heading;
                   
                  
 
-                 Text(title,style:TextStyle(fontSize: 30,fontWeight: FontWeight.bold, fontFamily: 'Raleway'),),
+                 Text(title,style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold, fontFamily: 'Raleway'),),
                const SizedBox(height: 12,),
-                Text(Heading,style:TextStyle(fontSize: 20, fontFamily: 'Raleway')),
-                SizedBox(height: 10,)
+                Text(Heading,style:TextStyle(fontSize: 15, fontFamily: 'Raleway')),
+                //SizedBox(height: 2,)
            
             ], 
       
