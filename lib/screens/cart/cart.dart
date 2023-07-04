@@ -1,31 +1,44 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/screens/widgets/cart_item.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
+import 'package:provider/provider.dart';
 
-class Cart extends StatelessWidget {
+import '../../models/product_model/product_model.dart';
+import '../../provider/app_provider.dart';
+
+class Cart extends StatefulWidget {
   const Cart({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-         title: Padding(
-           padding: const EdgeInsets.only(left:100.0),
-           child: const Text("Cart", style: TextStyle(color: Colors.black),),
-         ),), 
-         body: ListView.builder(  itemCount:5,itemBuilder: ((context, index) {
-         
-           return Container(
-            child: Row(children: [
-                 // Image.asset(src)
-                  ///when i continue i should worke here and go onwards!!!    3:48:41
-            ]),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color:Colors.blueAccent),
-              ),
+  State<Cart> createState() => _CartState();
+}
 
-           );
-         }))
+class _CartState extends State<Cart> {
+  
+//List<ProductModel> productList= [];
+
+int qty= 1;
+
+
+  @override
+  Widget build(BuildContext context) {
+        AppProvider appProvider = Provider.of<AppProvider>(context);
+
+
+    return 
+       Scaffold(
+        appBar: AppBar(
+           title: Padding(
+             padding: const EdgeInsets.only(left:100.0),
+             child: const Text("Cart", style: TextStyle(color: Colors.black),),
+           ),), 
+           body: appProvider.getCartProductList.isEmpty?Center(child: Text("You have nothing on your cart to take with you"),):ListView.builder(  itemCount:appProvider.getCartProductList.length,padding: EdgeInsets.all(2),itemBuilder: ((context, index) {
+            //ProductModel singleProduct = productList[it];
+             return CartItem(singleProduct: appProvider.getCartProductList[index],);
+           })
+      ),
+      
     );
   }
 }

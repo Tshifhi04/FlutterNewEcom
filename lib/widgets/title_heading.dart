@@ -26,9 +26,9 @@ final String Heading;
                   
                  
 
-                 Text(title,style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold, fontFamily: 'Raleway'),),
+                 Text(title,style:TextStyle(fontSize: 17,fontWeight: FontWeight.bold, fontFamily: 'Raleway'),),
                const SizedBox(height: 12,),
-                Text(Heading,style:TextStyle(fontSize: 15, fontFamily: 'Raleway')),
+                Text(Heading,style:TextStyle(fontSize: 13, fontFamily: 'Raleway')),
                 //SizedBox(height: 2,)
            
             ], 

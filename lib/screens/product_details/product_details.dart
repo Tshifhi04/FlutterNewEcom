@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:new_ecom_app/constants/constants.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/provider/app_provider.dart';
 import 'package:new_ecom_app/screens/cart/cart.dart';
+import 'package:new_ecom_app/screens/favourites_screen/favourites_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
 
@@ -17,6 +22,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   int qty=1;
   @override
   Widget build(BuildContext context) {
+     AppProvider appProvider = Provider.of<AppProvider>(context);
     return  Scaffold(
         appBar: AppBar(
           actions: [
@@ -50,6 +56,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                             setState(() {
                                 widget.singleProduct.isFavourite = !widget.singleProduct.isFavourite;
                             });
+                            if(widget.singleProduct.isFavourite){
+                               appProvider.addFavouriteProduct(widget.singleProduct);
+                               showMessage("Added to favourites");
+                            }
+                            else{
+                               appProvider.removeFavouriteProduct(widget.singleProduct);
+
+                            }
                           }, icon: Icon(widget.singleProduct.isFavourite?Icons.favorite:Icons.favorite_border))
 
                     
@@ -98,9 +112,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ],
                   ),
                   const Spacer(),
-                  Row(
+                  Row(   
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [ OutlinedButton(onPressed: (){}, child: Text("Add to cart")), SizedBox(width:10 ,), Container(width:110,child: ElevatedButton(onPressed:(){}, child: Text("Buy"),))],
+                    children: [ OutlinedButton(onPressed: (){
+                    
+                    ProductModel productModel = widget.singleProduct.copyWith(qty: qty);
+                     appProvider.addCartProduct(productModel);
+                      showMessage("Added to Cart");
+                      }, child: Text("Add to cart")), SizedBox(width:10 ,), Container(width:110,
+                      
+                      
+                      child: ElevatedButton(onPressed:(){
+                         Routes.instance.push(widget:const FavouritesScreen(), context: context);
+                      }, child: Text("Buy"),))],
                   ),
                   SizedBox(
                     height: 15,
@@ -108,9 +132,10 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                    
 
-            ]
+                ]
             ),
         ),
+        
 
 
 
