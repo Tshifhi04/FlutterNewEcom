@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:new_ecom_app/constants/routes.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:new_ecom_app/screens/auth_ui/signup/signup.dart';
-import 'package:new_ecom_app/screens/home/home.dart';
+import 'package:new_ecom_app/screens/btn_bar/btn_bar.dart';
+//import 'package:new_ecom_app/screens/home/home.dart';
 import 'package:new_ecom_app/widgets/buttons.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 import 'package:new_ecom_app/constants/constants.dart';
@@ -100,7 +101,7 @@ bool  isShowPassword = true;
                      bool isLogined= await  FirebaseAuthHelper.instance.login(email.text, password.text, context);
                     if (isLogined){
                  
-                      Routes.instance.pushAndRemoveUntil(widget: ButtonBar(), context: context);
+                      Routes.instance.pushAndRemoveUntil(widget: CustomBottomBar(), context: context);
         
                     
                     }

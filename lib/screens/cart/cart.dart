@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/screens/widgets/cart_item.dart';
-import 'package:new_ecom_app/widgets/title_heading.dart';
+//import 'package:new_ecom_app/widgets/title_heading.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/product_model/product_model.dart';
+//import '../../models/product_model/product_model.dart';
 import '../../provider/app_provider.dart';
 
 class Cart extends StatefulWidget {

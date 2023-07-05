@@ -6,7 +6,6 @@ import 'package:new_ecom_app/screens/auth_ui/login/login.dart';
 import 'package:new_ecom_app/screens/auth_ui/signup/signup.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 
-import '../../../widgets/buttons.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});

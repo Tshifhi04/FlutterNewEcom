@@ -1,3 +1,5 @@
+//import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_ecom_app/constants/constants.dart';
@@ -12,7 +14,7 @@ class FirebaseFirestoreHelper{
   Future<List<CategoryModel>> getCategories() async {
     try{
       QuerySnapshot<Map<String,dynamic>> querySnapshot = await _firebaseFirestore.collection("categories").get();
-     List<CategoryModel> categoriesList = await querySnapshot.docs.map((e) => CategoryModel.fromJson(e.data())).toList();
+     List<CategoryModel> categoriesList =  querySnapshot.docs.map((e) => CategoryModel.fromJson(e.data())).toList();
      return categoriesList;
     }
     catch(e){
@@ -53,4 +55,5 @@ Future<UserModel> getUserInformation() async {
   
     
   }
+
 }

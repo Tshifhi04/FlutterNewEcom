@@ -39,7 +39,7 @@ void initState() {
 
 void getCategoryList()async{
   setState(() {
-    isLoading=true;
+    //isLoading=true;
   });
   categoriesList=  await FirebaseFirestoreHelper.instance.getCategories();
   productList=  await FirebaseFirestoreHelper.instance.getWhatWeHaveForYou();//what we have for you AKA best products or top selling!!!
@@ -48,9 +48,9 @@ void getCategoryList()async{
  
  
   productList.shuffle();
-   setState(() {
+
     isLoading=false;
-  });
+
 }
 
 

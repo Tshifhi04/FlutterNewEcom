@@ -40,4 +40,26 @@ class UserModel {
 
 
     };
+
+
+
+
+    
+    UserModel copyWith({
+        String? firstName,image,lastName,phoneNumber
+
+
+    })=> UserModel(
+      
+          image: image??this.image,
+          id: id, 
+          firstName: firstName??this.firstName,
+          lastName: lastName??this.lastName,
+          phoneNumber: phoneNumber??this.phoneNumber, 
+          email: email
+    
+    );
+
+
+
 }

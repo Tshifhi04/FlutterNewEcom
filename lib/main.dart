@@ -9,7 +9,7 @@ import 'package:new_ecom_app/screens/auth_ui/welcome/welcome.dart';
 import 'package:new_ecom_app/screens/btn_bar/btn_bar.dart';
 import 'package:new_ecom_app/screens/home/home.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_options/firebase_options.dart';
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:new_ecom_app/screens/product_details/product_details.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuthHelper.instance.getAuthChange,
           builder: (context, snapshot){
             if(snapshot.hasData){
-            // return const Home();//Home
+             //return const Login();//Home
                return const CustomBottomBar();
             }
             return const Welcome();
