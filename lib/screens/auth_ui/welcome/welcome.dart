@@ -67,12 +67,12 @@ class Welcome extends StatelessWidget {
                 ),
                 SizedBox(height: 40,),
                 //buttons login and register
-               Buttons(title: "Login",onPressed: (() {
+            CupertinoButton(child: Text("Login"),onPressed: (() {
                  //on pesss functionality here
                  Routes.instance.push(widget: const Login(), context:context);
                })),
                    SizedBox(height: 5,),
-                  Buttons(title: "SignUp",onPressed: (() {
+                  CupertinoButton(child: Text("SignUp"),onPressed: (() {
 
                                                                         Routes.instance.push(widget: const SignUp(), context:context);
 

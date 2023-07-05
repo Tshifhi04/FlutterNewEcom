@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuthHelper.instance.getAuthChange,
           builder: (context, snapshot){
             if(snapshot.hasData){
-             // return const Home();//Home
-                return const CustomBottomBar();
+            // return const Home();//Home
+               return const CustomBottomBar();
             }
             return const Welcome();
           }

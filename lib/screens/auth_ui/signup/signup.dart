@@ -155,14 +155,14 @@ class _SignUpState extends State<SignUp> {
                   if (isValidated)
                   {
                     // showLoaderDialog(context);
-                     bool isLogined= await  FirebaseAuthHelper.instance.SignUp(email.text, password.text, context);
+                     bool isLogined= await  FirebaseAuthHelper.instance.SignUp(firstName.text,lastName.text,phoneNumber.text,email.text, password.text, context);
                     if (isLogined){
                  
-                      Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
+                      Routes.instance.pushAndRemoveUntil(widget: ButtonBar(), context: context);
         
                     
                     }
-                  }                  }, title: "SignUp"),
+                  }                  }, title: "SignUp", child: Text("null"),),
                    SizedBox(height: 15,),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,

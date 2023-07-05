@@ -100,12 +100,12 @@ bool  isShowPassword = true;
                      bool isLogined= await  FirebaseAuthHelper.instance.login(email.text, password.text, context);
                     if (isLogined){
                  
-                      Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
+                      Routes.instance.pushAndRemoveUntil(widget: ButtonBar(), context: context);
         
                     
                     }
                   }
-                  }, title: "Login"),
+                  }, title: "Login", child: Text("null"),),
                    SizedBox(height: 15,),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,

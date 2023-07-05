@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_firestore/firebase_firestore.dart';
 import 'package:new_ecom_app/models/category_model/category_model.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/provider/app_provider.dart';
 import 'package:new_ecom_app/screens/category_view/category_view.dart';
 import 'package:new_ecom_app/screens/product_details/product_details.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
 import '../auth_ui/login/login.dart';
@@ -27,6 +29,8 @@ bool isLoading =false;
 
 @override
 void initState() {
+   AppProvider appProvider = Provider.of<AppProvider>(context,listen: false);
+    appProvider.getUserInfofirebase();
     getCategoryList();
    // getProductList();////what we have for you AKA best products or top selling!!!
     super.initState();
@@ -39,6 +43,10 @@ void getCategoryList()async{
   });
   categoriesList=  await FirebaseFirestoreHelper.instance.getCategories();
   productList=  await FirebaseFirestoreHelper.instance.getWhatWeHaveForYou();//what we have for you AKA best products or top selling!!!
+ 
+ 
+ 
+ 
   productList.shuffle();
    setState(() {
     isLoading=false;
@@ -158,7 +166,7 @@ Widget build(BuildContext context) {
               
             ),
           ),
-                            SizedBox(height: 20,)
+                            SizedBox(height: 500,)
        ],
       ),
     ),

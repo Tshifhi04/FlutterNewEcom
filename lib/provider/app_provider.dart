@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:new_ecom_app/firebase_helper/firebase_firestore/firebase_firestore.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
+
+import '../models/user_model/user_model.dart';
 
 
 class AppProvider with ChangeNotifier{
+  UserModel? _userModel;
+  UserModel get getUserInformation => _userModel!;
 //cart list
  List<ProductModel> _cartProductList =[];
 
@@ -11,7 +16,7 @@ class AppProvider with ChangeNotifier{
   notifyListeners();
  }
   void removeCartProduct(ProductModel productModel){
-  _cartProductList.remove(productModel);
+  _cartProductList.remove(productModel); 
   notifyListeners();
  }
 
@@ -30,7 +35,11 @@ List<ProductModel> get getCartProductList =>_cartProductList;
 
 List<ProductModel> get getFavouriteProductList =>_favouriteProductList;
 
-
+/// User Information
+void getUserInfofirebase()async {
+ _userModel = await  FirebaseFirestoreHelper.instance.getUserInformation();
+ notifyListeners();
+}
 
 
 }
