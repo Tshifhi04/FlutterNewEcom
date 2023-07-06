@@ -1,13 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import 'package:new_ecom_app/screens/auth_ui/login/login.dart';
+import 'package:new_ecom_app/screens/auth_ui/welcome/welcome.dart';
 import 'package:new_ecom_app/screens/change_password/change_password.dart';
 import 'package:new_ecom_app/screens/edit_profile/edit_profile.dart';
+import 'package:new_ecom_app/screens/favourites_screen/favourites_screen.dart';
 import 'package:new_ecom_app/widgets/buttons.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
+import '../order_screen/order_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -62,6 +66,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     children: [
                       ListTile(
                         onTap: ()=> {
+                                                    Routes.instance.push(widget:OrderScreen(),context: context)
 
                         },
                         leading: Icon(Icons.shopping_bag_outlined),
@@ -69,21 +74,24 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       ListTile(
                         onTap: ()=> {
-                          
+                                              Routes.instance.push(widget:FavouritesScreen(),context: context)
+
                         },
                         leading: Icon(Icons.favorite_outline),
                         title: Text("Favourites"),
                       ),
                       ListTile(
                         onTap: ()=> {
-                          
+                                                                        Routes.instance.push(widget:FavouritesScreen(),context: context)
+
                         },
                         leading: Icon(Icons.info_outline),
                         title: Text("About us"),
                       ),
                       ListTile(
                         onTap: ()=> {
-                          
+                                                                        Routes.instance.push(widget:FavouritesScreen(),context: context)
+
                         },
                         leading: Icon(Icons.handshake_outlined),
                         title: Text("Support"),
@@ -98,7 +106,8 @@ class _AccountScreenState extends State<AccountScreen> {
                         onTap: ()=> {
                           FirebaseAuthHelper.instance.signOut()
                           ,setState(() {
-                            
+                                               Routes.instance.push(widget: Login(), context: context);
+
                           })
                         },
                         leading: Icon(Icons.logout_outlined),

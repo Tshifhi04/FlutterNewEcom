@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/screens/checkout/checkout.dart.dart';
 import 'package:new_ecom_app/screens/widgets/cart_item.dart';
 //import 'package:new_ecom_app/widgets/title_heading.dart';
 import 'package:provider/provider.dart';
 
 //import '../../models/product_model/product_model.dart';
+import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
 
 class Cart extends StatefulWidget {
@@ -28,6 +30,36 @@ int qty= 1;
 
     return 
        Scaffold(
+        
+
+ bottomNavigationBar: SizedBox(
+        height:150,
+        child:Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left:40,right:50.0),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children:[
+                              Text("Total",style: TextStyle(fontSize: 18,fontFamily: 'Raleway',fontWeight: FontWeight.bold),),
+                                                            Text("\R ${appProvider.totalPrice().toString()}",style: TextStyle(fontSize: 18,fontFamily: 'Raleway',fontWeight: FontWeight.bold),)
+
+                         ] 
+            
+              ),
+                
+            ),SizedBox(height: 20,),
+  ElevatedButton(child: const Text("Checkout"),onPressed: (){
+    Routes.instance.push(context: context,widget: Checkout());
+  },)
+          ],
+        ),
+       
+        
+        
+         ),
+
+
+
         appBar: AppBar(
            title: Padding(
              padding: const EdgeInsets.only(left:100.0),

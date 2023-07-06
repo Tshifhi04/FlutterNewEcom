@@ -8,6 +8,8 @@ import 'package:new_ecom_app/screens/home/home.dart';
 import 'package:new_ecom_app/widgets/buttons.dart';
 import 'package:new_ecom_app/widgets/title_heading.dart';
 
+import '../../btn_bar/btn_bar.dart';
+
 
 class SignUp extends StatefulWidget {
 const SignUp({super.key});
@@ -158,7 +160,7 @@ class _SignUpState extends State<SignUp> {
                      bool isLogined= await  FirebaseAuthHelper.instance.SignUp(firstName.text,lastName.text,phoneNumber.text,email.text, password.text, context);
                     if (isLogined){
                  
-                      Routes.instance.pushAndRemoveUntil(widget: ButtonBar(), context: context);
+                      Routes.instance.pushAndRemoveUntil(widget: CustomBottomBar(), context: context);
         
                     
                     }

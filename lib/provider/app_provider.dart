@@ -66,7 +66,7 @@ showLoaderDialog(context);
   else{
        String imageUrl = await FirebaseStorageHelper.instance.uploadUserImage(file);
      _userModel =  userModel.copyWith(image: imageUrl);
-             await FirebaseFirestore.instance.collection("users").doc(_userModel!.id).set(userModel!.toJson());
+             await FirebaseFirestore.instance.collection("users").doc(_userModel!.id).set(_userModel!.toJson());
                     
                               Navigator.of(context,rootNavigator: true).pop();
                                
@@ -79,6 +79,26 @@ showLoaderDialog(context);
           notifyListeners();
 
 }
+/// Overall Price ///
+
+double totalPrice(){
+    double totalPrice =0.0;
+    for(var element in _cartProductList){
+      totalPrice += element.price * element.qty!; 
+    }
+    return totalPrice;
+}
 
 
+void updateQty(ProductModel productModel,int qty){
+    int index =_cartProductList.indexOf(productModel);
+
+    _cartProductList[index].qty = qty;
+    notifyListeners();
+}
+
+
+
+
+////Buying a single Product/////////
 }

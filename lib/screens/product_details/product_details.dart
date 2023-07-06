@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ecom_app/constants/constants.dart';
 import 'package:new_ecom_app/models/product_model/product_model.dart';
 import 'package:new_ecom_app/provider/app_provider.dart';
+import 'package:new_ecom_app/screens/checkout/checkout.dart.dart';
 import 'package:new_ecom_app/screens/cart/cart.dart';
 import 'package:new_ecom_app/screens/favourites_screen/favourites_screen.dart';
 import 'package:provider/provider.dart';
@@ -123,7 +124,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       
                       
                       child: ElevatedButton(onPressed:(){
-                         Routes.instance.push(widget:const FavouritesScreen(), context: context);
+                         Routes.instance.push(widget:const Checkout(), context: context);
                       }, child: Text("Buy"),))],
                   ),
                   SizedBox(
@@ -132,8 +133,11 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                    
 
-                ]
+                ],
+
             ),
+                          
+
         ),
         
 

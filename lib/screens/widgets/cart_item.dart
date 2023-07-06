@@ -4,7 +4,9 @@ import 'package:new_ecom_app/models/product_model/product_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants.dart';
+import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
+import '../checkout/checkout.dart.dart';
 
 class CartItem extends StatefulWidget {
   final ProductModel singleProduct;
@@ -63,8 +65,9 @@ void initState() {
                                                           
                                                             if(qty>1){
                                                              setState(() {
-                                  qty--;
+                                                                    qty--;
                                                              });
+                                                             appProvider.updateQty(widget.singleProduct,qty);
                                                             }
                                                              
                                                          },
@@ -75,18 +78,20 @@ void initState() {
                                                          ),
                                                        ),
                                                          SizedBox(width: 5,),
-                                                    Text(qty.toString(),
+                                                    Text(widget.singleProduct.qty.toString(),
                                                     style: const TextStyle(
                                                      fontSize: 20,
                                                      fontWeight: FontWeight.bold,
                                                     ),),
-                                                   SizedBox(width: 5,),
+                                                   const SizedBox(width: 5,),
                                                    
                                                      CupertinoButton(
                                                          onPressed: (){
+                                                          
                                                            setState(() {
                                                              qty++;
                                                            });
+                                                           appProvider.updateQty(widget.singleProduct,qty);
                                                          },
                                                          padding: EdgeInsets.zero,
                                                          child: CircleAvatar(
@@ -143,13 +148,20 @@ void initState() {
                       ),
                     ),
                   ),
-                 
-                ]),
+               const SizedBox(height: 20,),
+             
+                ]
+                ),  
+                
+                
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color:Colors.blueAccent,width: 5),
+                border: Border.all(color:Colors.blueAccent,width: 3),
               ),
+
+
           
            );
+           
   }
 }

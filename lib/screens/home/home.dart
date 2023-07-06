@@ -32,15 +32,18 @@ void initState() {
    AppProvider appProvider = Provider.of<AppProvider>(context,listen: false);
     appProvider.getUserInfofirebase();
     getCategoryList();
+   // getProductList();
    // getProductList();////what we have for you AKA best products or top selling!!!
     super.initState();
   }
 
 
 void getCategoryList()async{
-  setState(() {
-    //isLoading=true;
-  });
+  
+    isLoading=true;
+
+    //isLoading=false;
+  
   categoriesList=  await FirebaseFirestoreHelper.instance.getCategories();
   productList=  await FirebaseFirestoreHelper.instance.getWhatWeHaveForYou();//what we have for you AKA best products or top selling!!!
  
@@ -49,7 +52,9 @@ void getCategoryList()async{
  
   productList.shuffle();
 
+   setState(() {
     isLoading=false;
+  });
 
 }
 
