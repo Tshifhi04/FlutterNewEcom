@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/constants/constants.dart';
+import 'package:new_ecom_app/models/product_model/product_model.dart';
+import 'package:new_ecom_app/screens/cart_item_checkout/cart_item_checkout.dart';
 import 'package:new_ecom_app/screens/checkout/checkout.dart.dart';
 import 'package:new_ecom_app/screens/widgets/cart_item.dart';
 //import 'package:new_ecom_app/widgets/title_heading.dart';
@@ -10,8 +13,8 @@ import '../../constants/routes.dart';
 import '../../provider/app_provider.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
-
+//  final ProductModel singleProduct;
+Cart({super.key,/*required this.singleProduct*/});
   @override
   State<Cart> createState() => _CartState();
 }
@@ -49,7 +52,19 @@ int qty= 1;
                 
             ),SizedBox(height: 20,),
   ElevatedButton(child: const Text("Checkout"),onPressed: (){
-    Routes.instance.push(context: context,widget: Checkout());
+
+         appProvider.clearBuyProduct();
+         appProvider.addBuyProductCartList();
+         appProvider.clearCart();
+         
+    //Routes.instance.push(context: context,widget: CartItemCheckout());
+
+    if(appProvider.getBuyProductList.isEmpty){
+      showMessage("Cart is empty");
+    }else{
+
+    Routes.instance.push(context: context,widget: CartItemCheckout( ));
+    }
   },)
           ],
         ),
@@ -74,3 +89,9 @@ int qty= 1;
     );
   }
 }
+
+
+
+
+
+//6:51:42

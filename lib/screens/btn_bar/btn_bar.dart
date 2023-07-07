@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_ecom_app/models/product_model/product_model.dart';
 import 'package:new_ecom_app/screens/account_screen/account_screen.dart';
 import 'package:new_ecom_app/screens/checkout/checkout.dart.dart';
 import 'package:new_ecom_app/screens/cart/cart.dart';
@@ -10,6 +11,7 @@ import '../home/home.dart';
 import '../order_screen/order_screen.dart';
 
 class CustomBottomBar extends StatefulWidget {
+   
   const CustomBottomBar({final Key? key,})
       : super(key: key);
 
@@ -25,7 +27,10 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
   List<Widget> _buildScreens() => [
     Home(),
     Cart(),
-     Checkout(),
+     //Cart(),// continue revise from 7:09:51
+     Cart( ),
+
+
     FavouritesScreen(),
     AccountScreen(),
 

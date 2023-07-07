@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -13,7 +15,7 @@ class ProductModel {
       required this.id,
       required this.name,
       required this.description,
-      required this.status,
+     // required this.status,
         required this. isFavourite,
       required this.price,
       required this.qty,
@@ -23,13 +25,23 @@ class ProductModel {
     String image;
     String description;
     String name; 
-    String status;
+   // String status;
     bool isFavourite;
     double price;
-
     int? qty;
 
-    factory ProductModel.fromJson(Map<String,dynamic> json) => ProductModel(image: json["image"],status: json["status"], id: json["id"], name: json["name"],price: double.parse(json["price"].toString() ), description: json["description"],isFavourite: false,qty:(json["qty"]));
+    factory ProductModel.fromJson(Map<String,dynamic> json) {
+      return ProductModel(
+                            image: json["image"],
+                           // status: json["status"],
+                            id: json["id"], 
+                            name: json["name"],
+                            price: double.parse(json["price"].toString()),
+                            description: json["description"],
+                            isFavourite: false,
+                            qty:(json["qty"])
+                          );
+                            }
 
     Map<String,dynamic> toJson()=>{
       "id":id,
@@ -37,9 +49,9 @@ class ProductModel {
       "image":image,
       "description":description,
       "price":price,
-      "status":status,
+     // "status":status,
       "isFavourite":isFavourite,
-      //"qty":qty,
+      "qty":qty,
 
 
     };
@@ -49,7 +61,7 @@ class ProductModel {
      
 
     int? qty,
-    })=> ProductModel(image: image, id: id, name: name, description: description, status: status, isFavourite: isFavourite, price: price, qty: qty??this.qty);
+    })=> ProductModel(image: image, id: id, name: name, description: description, /*status: status,*/ isFavourite: isFavourite, price: price, qty: qty??this.qty);
 
 
 

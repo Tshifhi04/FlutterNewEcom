@@ -88,7 +88,7 @@ double totalPrice(){
     }
     return totalPrice;
 }
-
+//// Quantity
 
 void updateQty(ProductModel productModel,int qty){
     int index =_cartProductList.indexOf(productModel);
@@ -100,5 +100,41 @@ void updateQty(ProductModel productModel,int qty){
 
 
 
-////Buying a single Product/////////
+//////////////////////////////////////////////////////////Buying a  Product/////////
+ 
+
+ void addBuyProduct(ProductModel model){
+
+  _buyProductList.add(model);
+  notifyListeners();
+ }
+
+  void addBuyProductCartList(){
+
+  _buyProductList.addAll(_cartProductList);
+  notifyListeners();
+ }
+  void clearCart(){
+
+  _cartProductList.clear();
+  notifyListeners();
+ }
+
+ 
+  void clearBuyProduct(){
+
+  _buyProductList.clear();
+  notifyListeners();
+ }
+final List<ProductModel> _buyProductList =[];
+ List<ProductModel> get getBuyProductList => _buyProductList;
+
+
+
+
+
+
+
+
+
 }
