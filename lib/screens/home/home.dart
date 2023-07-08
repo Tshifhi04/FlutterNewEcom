@@ -40,10 +40,12 @@ void initState() {
 
 void getCategoryList()async{
   
-    isLoading=true;
+setState(() {
+      isLoading=true;
 
+});
     //isLoading=false;
-  
+  FirebaseFirestoreHelper.instance.updateTokenFromFirebase();
   categoriesList=  await FirebaseFirestoreHelper.instance.getCategories();
   productList=  await FirebaseFirestoreHelper.instance.getWhatWeHaveForYou();//what we have for you AKA best products or top selling!!!
  

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/firebase_helper/firebase_firestore/firebase_firestore.dart';
 import 'package:new_ecom_app/screens/btn_bar/btn_bar.dart';
+import 'package:new_ecom_app/stripe_helper/stripe_helper.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
@@ -93,16 +94,49 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
           ),
           const SizedBox(height: 20,),
           Container(width:380,height: 50,child: ElevatedButton(onPressed: ()async{
-             
+        
+
+               
+                if(groupValue ==1)
+                {
+                      bool value = await FirebaseFirestoreHelper.instance.uploadOrderedProductFirebase(appProvider.getBuyProductList, context,"cash on delivery");
+                        appProvider.clearBuyProduct();
+                        if(value){
+                            Future.delayed(const Duration(seconds: 2),()
+                            {
+                              Routes.instance.push(widget: CustomBottomBar(), context: context);
+                            }
+                            ); 
+                                 }
                 
-             //   appProvider.addBuyProduct(widget.singleProduct);
-             bool value = await FirebaseFirestoreHelper.instance.uploadOrderedProductFirebase(appProvider.getBuyProductList, context,groupValue==1?"cash on delivery":"Paid");
-              appProvider.clearBuyProduct();
-              if(value){
-                  Future.delayed(const Duration(seconds: 2),(){
-                    Routes.instance.push(widget: CustomBottomBar(), context: context);
-                  }); 
-              }
+                }
+                else{
+                 // print("object");
+                 int value =  double.parse(appProvider.totalPrice().toString()).round().toInt();
+                     String totalPrice =   (value * 100).toString();
+
+                    bool  successfullyPaid = await  StripeHelper.instance.makePayment(totalPrice.toString());
+
+                       
+                       if(successfullyPaid)
+                       {
+                          bool value = await FirebaseFirestoreHelper.instance.uploadOrderedProductFirebase(appProvider.getBuyProductList, context,"paid");
+                          appProvider.clearBuyProduct();
+                            if(value)
+                            {
+                                  Future.delayed(const Duration(seconds: 10),(){
+                                                   Routes.instance.push(widget: CustomBottomBar(), context: context);
+                                   }); 
+                            }
+                       }
+                  
+                }
+
+
+
+                ///8:1534 touch ups!!!!
+               
+          
 
 
 

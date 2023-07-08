@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ecom_app/constants/constants.dart';
 import 'package:new_ecom_app/models/order_model/order_model.dart';
@@ -125,5 +126,28 @@ Future<UserModel> getUserInformation() async {
         return [];
       }
   }
+
+////Updating Token
+
+  void updateTokenFromFirebase()async{
+        String? token = await FirebaseMessaging.instance.getToken();
+        if(token !=null){
+          _firebaseFirestore.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).update({"notificationToken":token});
+        }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

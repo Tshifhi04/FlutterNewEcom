@@ -55,7 +55,7 @@ int qty= 1;
 
          appProvider.clearBuyProduct();
          appProvider.addBuyProductCartList();
-         appProvider.clearCart();
+        // appProvider.clearCart();
          
     //Routes.instance.push(context: context,widget: CartItemCheckout());
 
